@@ -1,0 +1,24 @@
+@import models.User
+@(form: Form[User])(implicit messages: Messages)
+
+@errors(field: Field) = {
+@if(field.hasErrors) {
+  @field.errors.map { e =>
+    @Messages(e.messages, e.args: _*)
+  }.mkString(", ")
+}
+}
+
+@main("play-anorm sample") {
+  <h2>Edit User:</h2>
+  <form action="#" method="POST">
+    <input name="id" type="hidden" value="@form("id").value">
+    <input type="text" disabled value="@form("id").value"><br>
+    <input name="name" type="text" value="@form("name").value" placeholder="user name"/>@errors(form("name"))<br>
+    <input name="mail" type="text" value="@form("mail").value" placeholder="mail address"/>@errors(form("mail"))<br>
+    <input type="submit" value="更新"/>
+  </form>
+  <form action="#" method="POST">
+    <input type="submit" value="削除"/>
+  </form>
+}

@@ -3,9 +3,10 @@
 # ~~~~
 
 # Home page
-GET         /users               controllers.Application.index
-GET         /users/add           controllers.Application.add
-POST        /users/create        controllers.Application.create
+GET         /users                 controllers.Application.index
+GET         /users/add             controllers.Application.add
+GET         /users/:id/edit        controllers.Application.edit(id: Long)
+POST        /users/create          controllers.Application.create
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)

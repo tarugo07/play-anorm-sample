@@ -36,6 +36,17 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     Ok(views.html.add(form))
   }
 
+  def edit(id: Long) = Action { implicit request =>
+    userDao.findById(id) match {
+      case Success(userOpt) =>
+        userOpt.map { user =>
+          Ok(views.html.edit(form.fill(user)))
+        }.getOrElse(NotFound)
+      case Failure(_) =>
+        InternalServerError
+    }
+  }
+
   def create = Action { implicit request =>
     form.bindFromRequest.fold(
       errors =>
