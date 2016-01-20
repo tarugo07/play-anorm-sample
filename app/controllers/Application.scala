@@ -57,4 +57,16 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
       }
     )
   }
+
+  def update = Action { implicit request =>
+    form.bindFromRequest.fold(
+      errors =>
+        BadRequest(views.html.edit(errors)),
+      user => {
+        userDao.update(user)
+        Redirect(routes.Application.index())
+      }
+    )
+  }
+
 }

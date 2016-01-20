@@ -11,7 +11,7 @@
 
 @main("play-anorm sample") {
   <h2>Edit User:</h2>
-  <form action="#" method="POST">
+  <form action="@routes.Application.update()" method="POST">
     <input name="id" type="hidden" value="@form("id").value">
     <input type="text" disabled value="@form("id").value"><br>
     <input name="name" type="text" value="@form("name").value" placeholder="user name"/>@errors(form("name"))<br>
