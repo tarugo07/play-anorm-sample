@@ -1,12 +1,18 @@
 package controllers
 
-import play.api._
+import javax.inject.Inject
+
+import infrastracture.UserDao
+import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc._
 
-class Application extends Controller {
+class Application @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+
+  val userDao = new UserDao()
 
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    val users = userDao.findAll()
+    Ok(views.html.index(users))
   }
 
 }
