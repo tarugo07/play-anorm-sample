@@ -18,7 +18,7 @@
     <input name="mail" type="text" value="@form("mail").value" placeholder="mail address"/>@errors(form("mail"))<br>
     <input type="submit" value="更新"/>
   </form>
-  <form action="#" method="POST">
+  <form action="@routes.Application.destroy(form.get.id.get)" method="POST">
     <input type="submit" value="削除"/>
   </form>
 }
